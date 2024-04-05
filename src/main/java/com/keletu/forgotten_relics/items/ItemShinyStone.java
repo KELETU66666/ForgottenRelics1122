@@ -74,7 +74,7 @@ public class ItemShinyStone extends ItemBaubleBase implements IBauble {
 
 	@Override
 	public BaubleType getBaubleType(ItemStack arg0) {
-		return BaubleType.AMULET;
+		return BaubleType.CHARM;
 	}
 
 

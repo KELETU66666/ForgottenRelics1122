@@ -5,6 +5,7 @@ import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
 import com.google.common.base.Predicates;
 import com.keletu.forgotten_relics.Main;
+import com.keletu.forgotten_relics.packets.ICanSwingMySwordMessage;
 import com.keletu.forgotten_relics.packets.NotificationMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -17,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -32,6 +34,49 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SuperpositionHandler {
+
+	/**
+	 * Sets the player casting cooldown to given number and, optionally, swings the item player is holding.
+	 */
+
+	public static void setCasted(EntityPlayer player, int cooldown, boolean swing) {
+		if(!player.world.isRemote) {
+			Main.castingCooldowns.put(player, cooldown);
+
+			if (swing) {
+				player.swingArm(player.getActiveHand());
+				Main.packetInstance.sendTo(new ICanSwingMySwordMessage(true), (EntityPlayerMP) player);
+			}
+
+		}
+
+	}
+
+	/**
+	 * Checks if given player has active casting cooldown.
+	 * @return True if yes, false if no.
+	 */
+
+	public static boolean isOnCoodown(EntityPlayer player) {
+		if (player.world.isRemote)
+			return false;
+
+		int cooldown;
+
+		try {
+			cooldown = Main.castingCooldowns.get(player);
+		}
+		catch (NullPointerException ex) {
+			Main.castingCooldowns.put(player, 0);
+			cooldown = 0;
+		}
+
+		if (cooldown != 0)
+			return true;
+		else
+			return false;
+
+	}
 
 	/**
 	 * Basically, does the same thing as Heisei Dream.

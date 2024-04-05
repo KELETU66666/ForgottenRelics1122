@@ -56,7 +56,7 @@ public class ItemAdvancedMiningCharm extends ItemBaubleBaseModifier {
 
     @Override
     public BaubleType getBaubleType(ItemStack arg0) {
-        return BaubleType.RING;
+        return BaubleType.CHARM;
     }
 
     void fillModifiers(Multimap<String, AttributeModifier> attributes, ItemStack stack) {

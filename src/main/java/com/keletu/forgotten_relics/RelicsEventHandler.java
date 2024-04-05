@@ -1,25 +1,69 @@
 package com.keletu.forgotten_relics;
 
 import com.keletu.forgotten_relics.config.RelicsConfigHandler;
+import com.keletu.forgotten_relics.items.ItemParadox;
 import com.keletu.forgotten_relics.proxy.CommonProxy;
 import com.keletu.forgotten_relics.utils.DamageRegistryHandler;
 import com.keletu.forgotten_relics.utils.SuperpositionHandler;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
-import vazkii.botania.common.core.helper.ItemNBTHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
 public class RelicsEventHandler {
+
+    @SubscribeEvent
+    public void livingTick(LivingEvent.LivingUpdateEvent event) {
+
+        if (event.getEntity() instanceof EntityPlayerMP & !event.getEntity().world.isRemote) {
+            EntityPlayerMP player = (EntityPlayerMP) event.getEntity();
+
+            /*
+             * Handler for decrementing player's casting cooldown on each tick.
+             */
+
+            if (Main.castingCooldowns.containsKey(player)) {
+                int cooldown = Main.castingCooldowns.get(player);
+                if (cooldown > 0) {
+                    cooldown--;
+                    Main.castingCooldowns.put(player, cooldown);
+                    return;
+                } else {
+                    return;
+                }
+
+            } else {
+                Main.castingCooldowns.put(player, 0);
+            }
+
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onTooltip(ItemTooltipEvent event) {
+        if (event.getItemStack().getItem() instanceof ItemParadox) {
+            for (int x = 0; x < event.getToolTip().size(); x++) {
+                if (event.getToolTip().get(x).contains(I18n.format("attribute.name.generic.attackDamage")) || event.getToolTip().get(x).contains(I18n.format("Attack Damage"))) {
+                    event.getToolTip().set(x, " " + I18n.format("item.ItemParadoxDamage_1.lore") + (int) RelicsConfigHandler.paradoxDamageCap + I18n.format("item.ItemParadoxDamage_2.lore"));
+                    return;
+                }
+            }
+        }
+    }
 
     @SubscribeEvent(priority= EventPriority.HIGHEST)
     public void onEntityAttacked(LivingAttackEvent event) {
@@ -222,8 +266,8 @@ public class RelicsEventHandler {
              * among all other wearers, if any exist.
              */
 
-            /*if (!(event.getSource() instanceof DamageRegistryHandler.DamageSourceSuperposition) & !(event.getSource() instanceof DamageRegistryHandler.DamageSourceSuperpositionDefined))
-                if (SuperpositionHandler.hasBauble(player, Main.itemSuperpositionRing) & !event.isCanceled()) {
+            if (!(event.getSource() instanceof DamageRegistryHandler.DamageSourceSuperposition) & !(event.getSource() instanceof DamageRegistryHandler.DamageSourceSuperpositionDefined))
+                if (SuperpositionHandler.hasBauble(player, CommonProxy.superpositionRing) & !event.isCanceled()) {
 
                     DamageSource altSource;
 
@@ -239,7 +283,7 @@ public class RelicsEventHandler {
 
                     altSource.damageType = event.getSource().getDamageType();
 
-                    List superpositioned = SuperpositionHandler.getBaubleOwnersList(player.world, Main.itemSuperpositionRing);
+                    List superpositioned = SuperpositionHandler.getBaubleOwnersList(player.world, CommonProxy.superpositionRing);
                     if (superpositioned.contains(player))
                         superpositioned.remove(player);
 
@@ -255,7 +299,7 @@ public class RelicsEventHandler {
                         event.setAmount(event.getAmount() - splitAmount);
                     }
                 }
-*/
+
             ///*
             // * Handler for damage absorption by Oblivion Amulet.
             // */

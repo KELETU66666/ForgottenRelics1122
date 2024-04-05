@@ -13,8 +13,8 @@ death.attack.forgottenMagic=%1$s was destroyed by %2$s using magic.
 ### ITEM NAMES ###
 
 item.forgotten_relics:ItemFalseJustice.name=False Justice
-item.forgotten_relics:ItemDeificAmulet.name=Deific Amulet
-item.forgotten_relics:ItemParadox.name=The Paradox
+item.forgotten_relics:deific_amulet.name=Deific Amulet
+item.paradox.name=The Paradox
 item.forgotten_relics:ItemOblivionAmulet.name=Amulet of The Oblivion
 item.forgotten_relics:ItemArcanum.name=Nebulous Core
 item.forgotten_relics:ItemDormantArcanum.name=Dormant Nebulous Core
@@ -32,22 +32,22 @@ item.forgotten_relics:ItemObeliskDrainer.name=Devourer of The Void
 item.forgotten_relics:ItemSoulTome.name=Edict of a Thousand Damned Souls
 item.forgotten_relics:shiny_stone.name=Shiny Stone
 item.forgotten_relics:ItemLunarFlares.name=Tome of Lunar Flares
-item.forgotten_relics:ItemSuperpositionRing.name=Ring of Superposition
+item.forgotten_relics:superposition_ring.name=Ring of Superposition
 item.forgotten_relics:ItemTeleportationTome.name=Tome of Discord
 item.forgotten_relics:ItemEldritchSpell.name=Eldritch Spell
 item.forgotten_relics:ItemDimensionalMirror.name=Dimensional Mirror
-item.forgotten_relics:ItemWeatherStone.name=Runic Stone
+item.weather_stone.name=Runic Stone
 item.forgotten_relics:ItemApotheosis.name=Apotheosis
 item.forgotten_relics:ItemChaosTome.name=Tome of Primal Chaos
-item.forgotten_relics:ItemXPTome.name=Tome of Ageless Wisdom
+item.xp_tome.name=Tome of Ageless Wisdom
 item.forgotten_relics:ItemOmegaCore.name=The Omega Core
 item.forgotten_relics:ItemWastelayer.name=The Wastelayer
 item.forgotten_relics:ItemOverthrower.name=Edict of Eternal Banishment
 item.forgotten_relics:ItemThunderpeal.name=Thunderpeal
-item.forgotten_relics:terror_crown.name=Crown of Terror
+item.terror_crown.name=Crown of Terror
 item.forgotten_relics:ItemDiscordRing.name=Ring of Discord
 item.forgotten_relics:ItemVoidGrimoire.name=Grimoire of The Abyss
-item.forgotten_relics:ItemOblivionStone.name=Keystone of The Oblivion
+item.oblivion_stone.name=Keystone of The Oblivion
 
 ### NOTIFICATIONS ###
 
@@ -147,7 +147,7 @@ item.ItemParadox2.lore=§5specified range. For each hit, you also
 item.ItemParadox3.lore=§5receive damage, that equals to the
 item.ItemParadox4.lore=§5difference between dealt and maximal
 item.ItemParadox5.lore=§5damage.
-item.ItemParadoxDamage_1.lore=§6+1-
+item.ItemParadoxDamage_1.lore=§61-
 item.ItemParadoxDamage_2.lore=§6 Attack Damage
 
 item.ItemOblivionAmulet1.lore=§5Absorbs any damage dealt to you.
@@ -301,8 +301,7 @@ item.MirrorDimension.lore=§6Dimension: §5
 
 item.ItemWeatherStone1.lore=§5Allows you to dispel the rainfall, if it rains.
 item.ItemWeatherStone2_1.lore=§5This effect requires§6
-item.ItemWeatherStone2_2.lore=§5of §eAer§5, §2Terra§5
-item.ItemWeatherStone3.lore=§5and §3Aqua§5 §6Vis§5.
+item.ItemWeatherStone2_2.lore=§5of §6Vis§5.
 
 item.ItemApotheosis1.lore=§5Brings down an array of §6Babylon Weapons§5.
 item.ItemApotheosis2.lore=§5They are launched into the direction of your

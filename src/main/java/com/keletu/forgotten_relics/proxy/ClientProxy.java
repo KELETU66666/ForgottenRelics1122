@@ -33,5 +33,11 @@ public class ClientProxy extends CommonProxy {
         darkSunRing.registerModels();
         shinyStone.registerModels();
         terrorCrown.registerModels();
+        paradox.registerModels();
+        DeificAmulet.registerModels();
+        XPTome.registerModels();
+        weatherStone.registerModels();
+        superpositionRing.registerModels();
+        oblivionStone.registerModels();
     }
 }

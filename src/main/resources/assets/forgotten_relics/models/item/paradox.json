@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "forgotten_relics:items/paradox"
+  }
+}
