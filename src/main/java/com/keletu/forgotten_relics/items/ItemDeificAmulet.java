@@ -18,14 +18,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import static thaumcraft.common.items.casters.CasterManager.consumeVisFromInventory;
+import thaumcraft.api.items.IRechargable;
+import thaumcraft.api.items.RechargeHelper;
 import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class ItemDeificAmulet extends ItemBaubleBase implements IBauble {
+public class ItemDeificAmulet extends ItemBaubleBase implements IBauble, IRechargable {
 
 	public void registerRenderers() {}
 
@@ -100,7 +101,7 @@ public class ItemDeificAmulet extends ItemBaubleBase implements IBauble {
 
 			if (entity.getAir() == 0) {
 
-				if (consumeVisFromInventory((EntityPlayer) entity, 1000*RelicsConfigHandler.deificAmuletVisMult))
+				if (RechargeHelper.consumeCharge(itemstack, entity, (int) (10*RelicsConfigHandler.deificAmuletVisMult)))
 				{ entity.setAir(300); }
 
 			}
@@ -122,4 +123,13 @@ public class ItemDeificAmulet extends ItemBaubleBase implements IBauble {
 	}
 
 
+	@Override
+	public int getMaxCharge(ItemStack itemStack, EntityLivingBase entityLivingBase) {
+		return 200;
+	}
+
+	@Override
+	public EnumChargeDisplay showInHud(ItemStack itemStack, EntityLivingBase entityLivingBase) {
+		return EnumChargeDisplay.NORMAL;
+	}
 }

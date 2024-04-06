@@ -24,7 +24,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import thaumcraft.common.items.casters.CasterManager;
+import thaumcraft.api.items.RechargeHelper;
 import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import java.util.List;
@@ -314,16 +314,13 @@ public class RelicsEventHandler {
              * Handler for damage absorption by Oblivion Amulet.
              */
 
-            if (!event.isCanceled() & SuperpositionHandler.hasBauble(player, CommonProxy.oblivionAmulet) & !SuperpositionHandler.isDamageTypeAbsolute(event.getSource())) {
-                if (CasterManager.consumeVisFromInventory(player, event.getAmount()*8*RelicsConfigHandler.oblivionAmuletVisMult)) {
+            if (RechargeHelper.consumeCharge(BaublesApi.getBaublesHandler(player).getStackInSlot(0), player, (int) (event.getAmount()*8*RelicsConfigHandler.oblivionAmuletVisMult)) && !event.isCanceled() & SuperpositionHandler.hasBauble(player, CommonProxy.oblivionAmulet) & !SuperpositionHandler.isDamageTypeAbsolute(event.getSource())) {
+                ItemStack oblivionAmulet = BaublesApi.getBaublesHandler(player).getStackInSlot(0);
 
-                    ItemStack oblivionAmulet = BaublesApi.getBaublesHandler(player).getStackInSlot(0);
+                ItemNBTHelper.setFloat(oblivionAmulet, "IDamageStored", ItemNBTHelper.getFloat(oblivionAmulet, "IDamageStored", 0) + event.getAmount());
 
-                    ItemNBTHelper.setFloat(oblivionAmulet, "IDamageStored", ItemNBTHelper.getFloat(oblivionAmulet, "IDamageStored", 0) + event.getAmount());
+                event.setCanceled(true);
 
-                    event.setCanceled(true);
-
-                }
             }
 
 

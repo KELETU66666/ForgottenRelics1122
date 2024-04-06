@@ -17,12 +17,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import thaumcraft.api.items.IRechargable;
 import thaumcraft.api.items.IWarpingGear;
 import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import java.util.List;
 
-public class ItemOblivionAmulet extends ItemBaubleBase implements IBauble, IWarpingGear {
+public class ItemOblivionAmulet extends ItemBaubleBase implements IBauble, IWarpingGear, IRechargable {
 
 	public void registerRenderers() {}
 
@@ -119,4 +120,13 @@ public class ItemOblivionAmulet extends ItemBaubleBase implements IBauble, IWarp
 	}
 
 
+	@Override
+	public int getMaxCharge(ItemStack itemStack, EntityLivingBase entityLivingBase) {
+		return 400;
+	}
+
+	@Override
+	public EnumChargeDisplay showInHud(ItemStack itemStack, EntityLivingBase entityLivingBase) {
+		return EnumChargeDisplay.NORMAL;
+	}
 }

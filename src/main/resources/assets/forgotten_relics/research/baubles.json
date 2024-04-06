@@ -1,0 +1,497 @@
+{
+  "entries": [
+    {
+      "key": "GENERICTHEORY",
+      "name": "fr.name.GenericTheory",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "thaumcraft:curio;1;4"
+      ],
+      "parents": [
+        "UNLOCKELDRITCH"
+      ],"meta":["ROUND","SPIKY","HIDDEN"],
+      "location": [
+        0,
+        0
+      ],
+      "stages": [
+        {
+          "text": "fr.text.GenericTheory.1",
+          "required_knowledge": [
+            "THEORY;ARTIFICE;1","THEORY;ELDRITCH;1"
+          ]
+        },
+        {
+          "text": "fr.text.GenericTheory.2"
+        }
+      ]
+    },
+    {
+      "key": "MINING_CHARM",
+      "name": "fr.name.MiningCharm",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:mining_charm"
+      ],
+      "parents": [
+        "GENERICTHEORY", "INFUSION"
+      ],"meta":["ROUND"],
+      "location": [
+        2,
+        -2
+      ],
+      "stages": [
+        {
+          "text": "fr.text.MiningCharm.1",
+          "required_knowledge": [
+            "THEORY;INFUSION;1","THEORY;ARTIFICE;1"
+          ],
+          "required_item": [
+            "thaumcraft:thaumium_pick"
+          ]
+        },
+        {
+          "text": "fr.text.MiningCharm.2",
+          "recipes": ["forgotten_relics:mining_charm"]
+        }
+      ]
+    },
+    {
+      "key": "DIMENSIONAL_MIRROR",
+      "name": "fr.name.DimensionalMirror",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:dimensional_mirror"
+      ],
+      "parents": [
+        "GENERICTHEORY", "MIRRORHAND"
+      ],"meta":["SPIKY"],
+      "location": [
+        0,
+        -3
+      ],
+      "stages": [
+        {
+          "text": "fr.text.DimensionalMirror.1",
+          "required_knowledge": [
+            "THEORY;INFUSION;1","THEORY;ARTIFICE;1"
+          ],
+          "required_craft": [
+            "thaumcraft:hand_mirror"
+          ]
+        },
+        {
+          "text": "fr.text.DimensionalMirror.2",
+          "recipes": ["forgotten_relics:dimensional_mirror"]
+        }
+      ]
+    },
+    {
+      "key": "RING_OF_SUPERPOSITION",
+      "name": "fr.name.SuperpositionRing",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:superposition_ring"
+      ],
+      "parents": [
+        "GENERICTHEORY", "INFUSION"
+      ],
+      "location": [
+        3,
+        0
+      ],
+      "stages": [
+        {
+          "text": "fr.text.SuperpositionRing.1",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;1","THEORY;ARTIFICE;1","THEORY;INFUSION;1"
+          ]
+        },
+        {
+          "text": "fr.text.SuperpositionRing.2",
+          "recipes": ["forgotten_relics:superposition_ring"]
+        }
+      ]
+    },
+    {
+      "key": "WEATHER_STONE",
+      "name": "fr.name.WeatherStone",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:weather_stone"
+      ],
+      "parents": [
+        "GENERICTHEORY", "INFUSION"
+      ],
+      "location": [
+        -3,
+        0
+      ],
+      "stages": [
+        {
+          "text": "fr.text.WeatherStone.1",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;1","THEORY;ARTIFICE;1","THEORY;INFUSION;1"
+          ],
+          "required_craft": ["botania:teruterubozu"]
+        },
+        {
+          "text": "fr.text.WeatherStone.2",
+          "recipes": ["forgotten_relics:weather_stone"]
+        }
+      ]
+    },
+    {
+      "key": "EXPERIENCE_TOME",
+      "name": "fr.name.XPTome",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:xp_tome"
+      ],
+      "parents": [
+        "WEATHER_STONE", "JARBRAIN"
+      ],
+      "location": [
+        -5,
+        -2
+      ],
+      "stages": [
+        {
+          "text": "fr.text.XPTome.1",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;1","THEORY;ARTIFICE;1","THEORY;INFUSION;1"
+          ],
+          "required_craft": ["thaumcraft:curio;1;1", "minecraft:writable_book"]
+        },
+        {
+          "text": "fr.text.XPTome.2",
+          "recipes": ["forgotten_relics:xp_tome"]
+        }
+      ]
+    },
+    {
+      "key": "OBLIVION_AMULET",
+      "name": "fr.name.OblivionAmulet",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:oblivion_amulet"
+      ],
+      "parents": [
+        "EXPERIENCE_TOME", "VOIDSEERPEARL"
+      ],
+      "location": [
+        -3,
+        -4
+        ],"meta":["SPIKY"],
+      "stages": [
+        {
+          "text": "fr.text.OblivionAmulet.1",
+          "required_knowledge": [
+            "THEORY;INFUSION;3","THEORY;ELDRITCH;3"
+          ],
+          "warp": 3
+        },
+        {
+          "text": "fr.text.OblivionAmulet.2",
+          "recipes": ["forgotten_relics:oblivion_amulet"]
+        }
+      ]
+    },
+    {
+      "key": "OBLIVION_STONE",
+      "name": "fr.name.OblivionStone",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:oblivion_stone"
+      ],
+      "parents": [
+        "RING_OF_SUPERPOSITION", "VOIDSEERPEARL"
+      ],
+      "location": [
+        4,
+        -2
+      ],"meta":["SPIKY", "HEX"],
+      "stages": [
+        {
+          "text": "fr.text.OblivionStone.1",
+          "required_knowledge": [
+            "THEORY;INFUSION;3","THEORY;ELDRITCH;3"
+          ],
+          "warp": 5
+        },
+        {
+          "text": "fr.text.OblivionStone.2",
+          "recipes": ["forgotten_relics:oblivion_stone"]
+        }
+      ]
+    },
+    {
+      "key": "CHAOS_CORE",
+      "name": "fr.name.ChaosCore",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:chaos_core"
+      ],
+      "parents": [
+        "OBLIVION_STONE", "!DragonStone", "!PixieDust", "!VoidIngot"
+      ],
+      "location": [
+        5,
+        -4
+      ],"meta":["ROUND"],
+      "stages": [
+        {
+          "text": "fr.text.ChaosCore.1",
+          "required_knowledge": [
+            "THEORY;INFUSION;1","THEORY;ELDRITCH;1"
+          ],
+          "warp": 2
+        },
+        {
+          "text": "fr.text.ChaosCore.2",
+          "recipes": ["forgotten_relics:chaos_core"]
+        }
+      ]
+    },
+    {
+      "key": "ADVANCED_MINING_CHARM",
+      "name": "fr.name.AdvancedMiningCharm",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:advanced_mining_charm"
+      ],
+      "parents": [
+        "MINING_CHARM", "!EternalLifeEssence", "!MiningCharm"
+      ],
+      "location": [
+        3,
+        -4
+      ],"meta":["HIDDEN"],
+      "stages": [
+        {
+          "text": "fr.text.AdvancedMiningCharm.1",
+          "required_knowledge": [
+            "THEORY;INFUSION;1","THEORY;ARTIFICE;1"
+          ],
+          "required_item": [
+            "thaumcraft:void_pick"
+          ],
+          "required_craft": [
+            "forbidden_relics:mining_charm"
+          ]
+        },
+        {
+          "text": "fr.text.AdvancedMiningCharm.2",
+          "recipes": ["forgotten_relics:advanced_mining_charm"]
+        }
+      ]
+    },
+    {
+      "key": "TERROR_CROWN",
+      "name": "fr.name.TerrorCrown",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:terror_crown"
+      ],
+      "parents": [
+        "EXPERIENCE_TOME", "!NetherStar", "!VoidSeerCharm"
+      ],
+      "location": [
+        -7,
+        -4
+      ],"meta":["HIDDEN"],
+      "stages": [
+        {
+          "text": "fr.text.TerrorCrown.1",
+          "required_knowledge": [
+            "THEORY;INFUSION;1","THEORY;ARTIFICE;1"
+          ],
+          "required_item": [
+            "botania:divacharm","botania:manaresource;1;5"
+          ]
+        },
+        {
+          "text": "fr.text.TerrorCrown.2",
+          "recipes": ["forgotten_relics:terror_crown"]
+        }
+      ]
+    },
+    {
+      "key": "DEIFIC_AMULET",
+      "name": "fr.name.DeificAmulet",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:deific_amulet"
+      ],
+      "parents": [
+        "MINING_CHARM", "!EternalLifeEssence", "!PixieDust"
+      ],
+      "location": [
+        2,
+        -5
+      ],"meta":["HIDDEN"],
+      "stages": [
+        {
+          "text": "fr.text.DeificAmulet.1",
+          "required_knowledge": [
+            "THEORY;ARTIFICE;2", "THEORY;INFUSION;2"
+          ]
+        },
+        {
+          "text": "fr.text.DeificAmulet.2",
+          "recipes": ["forgotten_relics:deific_amulet"]
+        }
+      ]
+    },
+    {
+      "key": "FR_ARCANUM",
+      "name": "fr.name.NebulousCore",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:arcanum"
+      ],
+      "parents": [
+        "DEIFIC_AMULET", "VISAMULET", "!SuperpositionRing", "!ThaumiumIngot"
+      ],
+      "location": [
+        0,
+        -6
+      ],"meta":["HIDDEN", "SPIKY"],
+      "stages": [
+        {
+          "text": "fr.text.NebulousCore.1",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;1", "THEORY;ARTIFICE;2", "THEORY;INFUSION;2"
+          ],
+          "required_craft": [
+            "thaumcraft:amulet_vis;1;1"
+          ]
+        },
+        {
+          "text": "fr.text.NebulousCore.2",
+          "recipes": ["forgotten_relics:arcanum"]
+        }
+      ]
+    },
+    {
+      "key": "SHINY_STONE",
+      "name": "fr.name.ShinyStone",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:shiny_stone"
+      ],
+      "parents": [
+        "DEIFIC_AMULET", "!DragonStone", "!EternalLifeEssence", "!EnchantedGoldenApple"
+      ],
+      "location": [
+        4,
+        -6
+      ],"meta":["HIDDEN"],
+      "stages": [
+        {
+          "text": "fr.text.ShinyStone.1",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;1", "THEORY;INFUSION;1"
+          ],
+          "required_item": [
+            "thaumcraft:verdant_charm", "minecraft:golden_apple;1;1"
+          ]
+        },
+        {
+          "text": "fr.text.ShinyStone.2",
+          "recipes": ["forgotten_relics:shiny_stone"]
+        }
+      ]
+    },
+    {
+      "key": "PARADOX",
+      "name": "fr.name.TheParadox",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:paradox"
+      ],
+      "parents": [
+        "RING_OF_SUPERPOSITION", "!ChaosCore"
+      ],
+      "location": [
+        7,
+        -2
+      ],"meta":["HIDDEN", "HEX"],
+      "stages": [
+        {
+          "text": "fr.text.TheParadox.1",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;6","THEORY;INFUSION;6","THEORY;ELDRITCH;6"
+          ],
+          "required_craft": [
+            "forgotten_relics:chaos_core"
+          ],
+          "warp": 5
+        },
+        {
+          "text": "fr.text.TheParadox.2",
+          "recipes": ["forgotten_relics:paradox"]
+        }
+      ]
+    },
+    {
+      "key": "DARK_SUN_RING",
+      "name": "fr.name.DarkSunRing",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:dark_sun_ring"
+      ],
+      "parents": [
+        "RING_OF_SUPERPOSITION", "!BloodPendant", "!EternalLifeEssence", "!BlazeRod"
+      ],
+      "location": [
+        6,
+        1
+      ],"meta":["HIDDEN"],
+      "stages": [
+        {
+          "text": "fr.text.DarkSunRing.1",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;1","THEORY;INFUSION;1","THEORY;ELDRITCH;1"
+          ],
+          "warp": 3
+        },
+        {
+          "text": "fr.text.DarkSunRing.2",
+          "recipes": ["forgotten_relics:dark_sun_ring"]
+        }
+      ]
+    },
+    {
+      "key": "ANCIENT_AEGIS",
+      "name": "fr.name.AncientAegis",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "forgotten_relics:ancient_aegis"
+      ],
+      "parents": [
+        "RING_OF_SUPERPOSITION", "!DragonStone"
+      ],
+      "location": [
+        4,
+        2
+      ],"meta":["HIDDEN"],
+      "stages": [
+        {
+          "text": "fr.text.AncientAegis.1",
+          "required_knowledge": [
+            "THEORY;ARTIFIICE;1","THEORY;INFUSION;1","THEORY;ELDRITCH;1"
+          ],
+          "required_craft": [
+          "botania:knockbackbelt"
+        ],
+          "warp": 2
+        },
+        {
+          "text": "fr.text.AncientAegis.2",
+          "recipes": ["forgotten_relics:ancient_aegis"]
+        }
+      ]
+    }
+  ]
+}

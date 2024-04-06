@@ -140,7 +140,7 @@ item.ItemDeificAmulet1_alt.lore=§5Immunity to most debuffs.
 item.ItemDeificAmulet2.lore=§5Extinguishes you when on fire.
 item.ItemDeificAmulet3.lore=§5Prolonged invincibility frames.
 item.ItemDeificAmulet4.lore=§5Replenishes air underwater at
-item.ItemDeificAmulet5.lore=§5the cost of §eAer§5 and §3Aqua§5 §6Vis§5.
+item.ItemDeificAmulet5.lore=§5Need cost §6Vis§5.
 
 item.ItemParadox1.lore=§5Deals random amount of damage within
 item.ItemParadox2.lore=§5specified range. For each hit, you also
@@ -154,7 +154,7 @@ item.ItemOblivionAmulet1.lore=§5Absorbs any damage dealt to you.
 item.ItemOblivionAmulet2.lore=§5This damage can be released upon
 item.ItemOblivionAmulet3.lore=§5you at random.
 item.ItemOblivionAmulet4.lore=§5Your soul shall suffer!
-item.ItemOblivionAmulet5.lore=§5Consumes §cIgnis§5 and §8Perditio§5 §6Vis§5.
+item.ItemOblivionAmulet5.lore=§5Consumes §6Vis§5.
 item.ItemOblivionAmuletDamage.lore=§6Damage stored:
 
 item.ItemDormantArcanum1.lore=§5Temporarily inactive, all effects are disabled.
@@ -170,7 +170,7 @@ item.ItemChaosCore7.lore=§5May apply random status effects to you.
 
 item.ItemArcanum1.lore=§5Vis discount:
 item.ItemArcanum2.lore=§5Passively generates random §6Vis§5 on your
-item.ItemArcanum3.lore=§5wands. If you are attacked, there is a
+item.ItemArcanum3.lore=§5equipments. If you are attacked, there is a
 item.ItemArcanum4.lore=§5§640%% chance§5 that attack will be dodged
 item.ItemArcanum5.lore=§5and you will be teleported to a random
 item.ItemArcanum6.lore=§5location nearby.
@@ -402,15 +402,13 @@ item.OmegaCore2.lore=§5You are immortal while possesing it.
 
 ### RESEARCH CATEGORY ###
 
-tc.research_category.ForgottenRelics=Forgotten Relics
+tc.research_category.FORGOTTEN_RELICS=Forgotten Relics
 
 fr.name.GenericTheory=Theory of Eternal Artifacts
 fr.tag.GenericTheory=...order emerges from the chaos, and inevitably returns to it.
-fr.text.GenericTheory.1=You have already spent significant amount of time on researches, that try to explain the very origin of reality you live in. This one is one of them.<BR/>After a while, you came across a lot of artifacts of all shapes and function. Some of them were obtained somewhere in the world... Some of them you've created by your own. At least, so you thought until now. There's probably something more that makes difference between mundane thing and true relic, something more than just... say, "powerfulness", or magic that lies in it's foundation.<BR/>Due to all their complexity and uniqueness, some things shouldn't be
-fr.text.GenericTheory.2=recreatable under any circumstances, but there's a lot of examples that directly disprove this assumption. Even the most unusual and powerful relics can exist in more than one example, and their copies is quite indistinguishable from original... If that "original" exists at all, and if it could be found among all copies, which is most of time only theoretically possible.<BR/>You now have incredibly fabulous, yet simple idea, that could explain this whole phenomenon - that there's no such things as "copy" of relic. All examples of it is true original, that is just capable to exist in limitless number of places at once. Even if you destroy all incarnations of it, erase knowledge about it from any piece of parchment in the whole world, it wouldn't then be lost
-fr.text.GenericTheory.3=forever - given the right conditions and components, it could be recreated once more...<BR/>Or, to say more technically correct, summoned. Therefore, they should remain embedded into the structure of reality itself, and it makes you questioning - if any mortal like you was ever able to create something truly unique, or we all are just recreating something that already existed before we were even born?<BR/>By now, though, you assume that an edge between mundane items and the relics exist, no matter how blurred it may seem. The first just don't possess any "specialty", and almost anyone with right knowledge is capable to forge a hundreds of iron swords, that would be quite similar in their appearance - but they
-fr.text.GenericTheory.4=wouldn't be the same, just made of same materials and forged into similar shape. Relics, though, have something more in them, that allows them to manifest in such unusual way. Something that could be described as... "Soul"? "Essence"? "Mind"? Whatever.<BR/>After thinking for a while, you found this theory incredibly fascinating. Not only it resolves all this riddle around the nature of some artifacts - if you would be able to understand it more deeply, you might be capable to get a lot profits of this knowledge. This research could be one of the hardest (and probably, the most dangerous) ones you ever faced, but potential reward is more than worthy of all the effort... So, what are you waiting for?
-fr.text.GenericTheory.5=
+fr.text.GenericTheory.1=You have already spent significant amount of time on researches, that try to explain the very origin of reality you live in. This one is one of them.<BR/>After a while, you came across a lot of artifacts of all shapes and function. Some of them were obtained somewhere in the world... Some of them you've created by your own. At least, so you thought until now. There's probably something more that makes difference between mundane thing and true relic, something more than just... say, "powerfulness", or magic that lies in it's foundation.<BR/>Due to all their complexity and uniqueness, some things shouldn't be <PAGE>recreatable under any circumstances, but there's a lot of examples that directly disprove this assumption. Even the most unusual and powerful relics can exist in more than one example, and their copies is quite indistinguishable from original... If that "original" exists at all, and if it could be found among all copies, which is most of time only theoretically possible.
+fr.text.GenericTheory.2=You now have incredibly fabulous, yet simple idea, that could explain this whole phenomenon - that there's no such things as "copy" of relic. All examples of it is true original, that is just capable to exist in limitless number of places at once. Even if you destroy all incarnations of it, erase knowledge about it from any piece of parchment in the whole world, it wouldn't then be lost <PAGE> forever - given the right conditions and components, it could be recreated once more...<BR/>Or, to say more technically correct, summoned. Therefore, they should remain embedded into the structure of reality itself, and it makes you questioning - if any mortal like you was ever able to create something truly unique, or we all are just recreating something that already existed before we were even born?<BR/>By now, though, you assume that an edge between mundane items and the relics exist, no matter how blurred it may seem. The first just don't possess any "specialty", and almost anyone with right knowledge is capable to forge a hundreds of iron swords, that would be quite similar in their appearance - but they <PAGE> wouldn't be the same, just made of same materials and forged into similar shape. Relics, though, have something more in them, that allows them to manifest in such unusual way. Something that could be described as... "Soul"? "Essence"? "Mind"? Whatever.<BR/>After thinking for a while, you found this theory incredibly fascinating. Not only it resolves all this riddle around the nature of some artifacts - if you would be able to understand it more deeply, you might be capable to get a lot profits of this knowledge. This research could be one of the hardest (and probably, the most dangerous) ones you ever faced, but potential reward is more than worthy of all the effort... So, what are you waiting for?
+
 
 fr.name.SpellbookTheory=Basics of Spellbook Mastery
 fr.tag.SpellbookTheory=All new is well forgotten old
@@ -420,8 +418,8 @@ fr.text.SpellbookTheory.3=Another upside is that they could drain Vis from basic
 fr.text.SpellbookTheory.4=
 
 fr.name.MiningCharm=Mining Charm
-fr.tag.MiningCharm=Everything genial is simple
-fr.text.MiningCharm.1=While being a rather simple invention, mining charm may be much more useful than the most unique and powerful accesories... In some situations, of course.<BR/>Effectively increasing your mining speed and block reach, it could be considered must-have item for long and arduos underground expeditions, that will definitely still happen in future...  If someday you wouldn't find inexhaustible source of minerals and metals in your backyard.<BR/>Well, you shouldn't exclude such a possibility, but it's not very likely to happen.
+fr.text.MiningCharm.1=While being a rather simple invention, mining charm may be much more useful than the most unique and powerful accesories... In some situations, of course.
+fr.text.MiningCharm.2=While being a rather simple invention, mining charm may be much more useful than the most unique and powerful accesories... In some situations, of course.<BR/>Effectively increasing your mining speed and block reach, it could be considered must-have item for long and arduos underground expeditions, that will definitely still happen in future...  If someday you wouldn't find inexhaustible source of minerals and metals in your backyard.<BR/>Well, you shouldn't exclude such a possibility, but it's not very likely to happen.
 
 fr.name.AdvancedMiningCharm=Ethereal Mining Charm
 fr.tag.AdvancedMiningCharm=Harder, better, faster... Whatever.
@@ -429,8 +427,8 @@ fr.text.AdvancedMiningCharm.1=After playing around with regular mining charm, yo
 
 fr.name.SuperpositionRing=Ring of Superposition
 fr.tag.SuperpositionRing=Practical application of quantuum theories
-fr.text.SuperpositionRing.1=One of the first results of your work over the Theory of Eternal Artifacts, Ring of Superposition perfectly demonstrates that your assumptions were not unfounded.<BR/>The main principle of it's work directly proves, that somehow, there can't be just two Rings of Superposition - as long as components and conditions are the same, you will always get the same ring, that just exists simultaneously in a lot of places. All it's wearers are tied up with each other, and while one suffers - all others will have to share this suffering.<BR/>To the practical side, it's unusual properties absolutely remain
-fr.text.SuperpositionRing.2=double-edged sword, and you are still not sure, whether it would be a good or bad idea to wear this relic. As many other, more familiar things, it might bring a great please to you... and a great suffering, either.
+fr.text.SuperpositionRing.1=One of the first results of your work over the Theory of Eternal Artifacts, Ring of Superposition perfectly demonstrates that your assumptions were not unfounded.<BR/>The main principle of it's work directly proves, that somehow, there can't be just two Rings of Superposition - as long as components and conditions are the same, you will always get the same ring, that just exists simultaneously in a lot of places. All it's wearers are tied up with each other, and while one suffers - all others will have to share this suffering.
+fr.text.SuperpositionRing.2=One of the first results of your work over the Theory of Eternal Artifacts, Ring of Superposition perfectly demonstrates that your assumptions were not unfounded.<BR/>The main principle of it's work directly proves, that somehow, there can't be just two Rings of Superposition - as long as components and conditions are the same, you will always get the same ring, that just exists simultaneously in a lot of places. All it's wearers are tied up with each other, and while one suffers - all others will have to share this suffering. To the practical side, it's unusual properties absolutely remain <PAGE> double-edged sword, and you are still not sure, whether it would be a good or bad idea to wear this relic. As many other, more familiar things, it might bring a great please to you... and a great suffering, either.
 
 fr.name.WeatherStone=Runic Stone
 fr.tag.WeatherStone=The most powerful umbrella ever
@@ -464,8 +462,8 @@ fr.text.ChaosTome.2=with not less random power.<BR/>Summing up, it could be cons
 
 fr.name.DimensionalMirror=Dimensional Mirror
 fr.tag.DimensionalMirror=Don't worry if your inners will become outards
-fr.text.DimensionalMirror.1=This discovery, rather elementary in appearance, was preceded by a long and meticulous search for elegant ways of traveling across long distanced and entire dimensions. From the moment of discovery of magic mirrors, you were sure that there should be a way to apply magic, laid in their foundation, to transfer a living beings - but before any living organisms arrived to the end point, at best, in parts ... If they arrived at all.<BR/>Only by combining magic of The End, resources of Alfheim and the power of Gaia, you finally achieved the desired success. Dimensional Mirror can memorize your current location and dimension, allowing to return to
-fr.text.DimensionalMirror.2=this place later by simply gazing into it.<BR/>The safety of such travels remains questionable for you. Although no trials have led to accidents - you are too concerned about the fact that you cannot fully understand the principle of its work, and therefore every interdimensional "journey" is invariably accompanied by anxiety and internal tension.
+fr.text.DimensionalMirror.1=This discovery, rather elementary in appearance, was preceded by a long and meticulous search for elegant ways of traveling across long distanced and entire dimensions.
+fr.text.DimensionalMirror.2=From the moment of discovery of magic mirrors, you were sure that there should be a way to apply magic, laid in their foundation, to transfer a living beings - but before any living organisms arrived to the end point, at best, in parts ... If they arrived at all.<BR/>Only by combining magic of The End, resources of Alfheim and the power of Gaia, you finally achieved the desired success. Dimensional Mirror can memorize your current location and dimension, allowing to return to <PAGE>this place later by simply gazing into it.<BR/>The safety of such travels remains questionable for you. Although no trials have led to accidents - you are too concerned about the fact that you cannot fully understand the principle of its work, and therefore every interdimensional "journey" is invariably accompanied by anxiety and internal tension.
 
 fr.name.XPTome=Tome of Ageless Wisdom
 fr.tag.XPTome=It won't save you from sclerosis, unfortunately

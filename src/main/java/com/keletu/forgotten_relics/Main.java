@@ -10,6 +10,7 @@ import com.keletu.forgotten_relics.proxy.CommonProxy;
 import com.keletu.forgotten_relics.recipes.RecipeOblivionStone;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -33,6 +34,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.RecipeSorter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import thaumcraft.Thaumcraft;
+import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.items.ItemsTC;
+import thaumcraft.api.research.ResearchCategories;
+import thaumcraft.api.research.ResearchEvent;
+import thaumcraft.api.research.ScanItem;
+import thaumcraft.api.research.ScanningManager;
+import thaumcraft.common.lib.research.ResearchManager;
+import vazkii.botania.common.item.ModItems;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,6 +93,21 @@ public class Main {
 
         proxy.init(event);
 
+        ScanningManager.addScannableThing(new ScanItem("!NetherStar", new ItemStack(Items.NETHER_STAR)));
+        ScanningManager.addScannableThing(new ScanItem("!VoidSeerCharm", new ItemStack(ItemsTC.charmVoidseer)));
+        ScanningManager.addScannableThing(new ScanItem("!EternalLifeEssence", new ItemStack(ModItems.manaResource, 1, 5)));
+        ScanningManager.addScannableThing(new ScanItem("!MiningCharm", new ItemStack(CommonProxy.MiningCharm)));
+        ScanningManager.addScannableThing(new ScanItem("!PixieDust", new ItemStack(ModItems.manaResource, 1, 8)));
+        ScanningManager.addScannableThing(new ScanItem("!DragonStone", new ItemStack(ModItems.manaResource, 1, 9)));
+        ScanningManager.addScannableThing(new ScanItem("!VoidIngot", new ItemStack(ItemsTC.ingots, 1, 1)));
+        ScanningManager.addScannableThing(new ScanItem("!EnchantedGoldenApple", new ItemStack(Items.GOLDEN_APPLE, 1, 1)));
+        ScanningManager.addScannableThing(new ScanItem("!ChaosCore", new ItemStack(CommonProxy.chaosCore)));
+        ScanningManager.addScannableThing(new ScanItem("!BloodPendant", new ItemStack(ModItems.bloodPendant)));
+        ScanningManager.addScannableThing(new ScanItem("!BlazeRod", new ItemStack(Items.BLAZE_ROD)));
+        ScanningManager.addScannableThing(new ScanItem("!SuperpositionRing", new ItemStack(CommonProxy.superpositionRing)));
+        ScanningManager.addScannableThing(new ScanItem("!ThaumiumIngot", new ItemStack(ItemsTC.ingots, 1, 0)));
+        ResearchCategories.registerCategory("FORGOTTEN_RELICS", null, new AspectList(), new ResourceLocation(MOD_ID, "textures/items/omega_core.png"), new ResourceLocation(Thaumcraft.MODID, "textures/gui/gui_research_back_5.jpg"));
+        ThaumcraftApi.registerResearchLocation(new ResourceLocation(MOD_ID, "research/baubles"));
         //RecipeSorter.register("forge:oblivionstone", RecipeOblivionStone.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessorenbt");
 
         darkRingDamageNegations.add(DamageSource.LAVA.damageType);

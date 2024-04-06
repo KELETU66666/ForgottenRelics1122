@@ -1,7 +1,7 @@
 package com.keletu.forgotten_relics.items;
 
 import com.keletu.forgotten_relics.Main;
-import com.keletu.forgotten_relics.config.RelicsConfigHandler;
+import static com.keletu.forgotten_relics.config.RelicsConfigHandler.weatherStoneVisMult;
 import com.keletu.forgotten_relics.utils.SuperpositionHandler;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -14,23 +14,24 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import thaumcraft.common.items.casters.CasterManager;
+import thaumcraft.api.items.IRechargable;
+import static thaumcraft.api.items.IRechargable.EnumChargeDisplay.NORMAL;
+import thaumcraft.api.items.RechargeHelper;
 import vazkii.botania.common.Botania;
 import vazkii.botania.common.core.handler.ModSounds;
 import vazkii.botania.common.core.helper.Vector3;
 
 import java.util.List;
 
-public class ItemWeatherStone extends Item {
+public class ItemWeatherStone extends Item implements IRechargable {
 
-	public int VisCost = (int) (25 * RelicsConfigHandler.weatherStoneVisMult);
+	public int VisCost = (int) (100 * weatherStoneVisMult);
 
 	public ItemWeatherStone() {
 
@@ -87,7 +88,7 @@ public class ItemWeatherStone extends Item {
 
 		if(player instanceof EntityPlayer)
 			if (count == 1 & player.world.getWorldInfo().isRaining())
-				if (CasterManager.consumeVisFromInventory((EntityPlayer) player, this.VisCost)) {
+				if (RechargeHelper.consumeCharge(stack, player, VisCost)) {
 
 					for(int i = 0; i <= 24; i++) {
 						float r = 0.0F;
@@ -109,6 +110,7 @@ public class ItemWeatherStone extends Item {
 					player.world.getWorldInfo().setRainTime(24000 + ((int) (Math.random()*976000)));
 
 					SuperpositionHandler.setCasted((EntityPlayer) player, 100, false);
+
 				}
 	}
 
@@ -120,4 +122,13 @@ public class ItemWeatherStone extends Item {
 	}
 
 
+	@Override
+	public int getMaxCharge(ItemStack itemStack, EntityLivingBase entityLivingBase) {
+		return (int) (100 * weatherStoneVisMult);
+	}
+
+	@Override
+	public EnumChargeDisplay showInHud(ItemStack itemStack, EntityLivingBase entityLivingBase) {
+		return NORMAL;
+	}
 }

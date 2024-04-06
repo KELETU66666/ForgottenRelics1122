@@ -13,12 +13,15 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.items.IVisDiscountGear;
+import thaumcraft.api.items.RechargeHelper;
 import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import java.util.List;
@@ -39,9 +42,6 @@ public class ItemArcanum extends ItemBaubleBase implements IBauble, IVisDiscount
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack par1ItemStack, World par2EntityPlayer, List<String> par3List, ITooltipFlag par4)
 	{
-		par3List.add(I18n.format("item.ItemArcanum1.lore") + " " + 35 + "%");
-		par3List.add(I18n.format("item.FREmpty.lore"));
-
 		if(GuiScreen.isShiftKeyDown()){
 
 			par3List.add(I18n.format("item.ItemArcanum2.lore"));
@@ -77,7 +77,40 @@ public class ItemArcanum extends ItemBaubleBase implements IBauble, IVisDiscount
 	public void onWornTick(ItemStack itemstack, EntityLivingBase entity) {
 		super.onWornTick(itemstack, entity);
 
-		if (entity instanceof EntityPlayer & Math.random() <= 0.000208 & !entity.world.isRemote) {
+		if (entity instanceof EntityPlayer & !entity.world.isRemote & Math.random() <= (0.025*RelicsConfigHandler.arcanumGenRate)) {
+
+			NonNullList<ItemStack> inv = ((EntityPlayer)entity).inventory.mainInventory;
+			int a = 0;
+
+			while(true) {
+				if (a >= InventoryPlayer.getHotbarSize()) {
+					IBaublesItemHandler baubles = BaublesApi.getBaublesHandler((EntityPlayer)entity);
+
+					for(a = 0; a < baubles.getSlots(); ++a) {
+						if (RechargeHelper.rechargeItem(entity.world, baubles.getStackInSlot(a), entity.getPosition(), (EntityPlayer)entity, 1) > 0.0F) {
+							return;
+						}
+					}
+
+					inv = ((EntityPlayer)entity).inventory.armorInventory;
+
+					for(a = 0; a < inv.size(); ++a) {
+						if (RechargeHelper.rechargeItem(entity.world, inv.get(a), entity.getPosition(), (EntityPlayer)entity, 1) > 0.0F) {
+							return;
+						}
+					}
+					break;
+				}
+
+				if (RechargeHelper.rechargeItem(entity.world, inv.get(a), entity.getPosition(), (EntityPlayer)entity, 1) > 0.0F) {
+					return;
+				}
+
+				++a;
+			}
+		}
+
+		else if (entity instanceof EntityPlayer & Math.random() <= 0.000208 & !entity.world.isRemote) {
 
 			for (int counter = 0; counter <=32; counter++) {
 				if (SuperpositionHandler.validTeleportRandomly(entity, entity.world, 32)) {

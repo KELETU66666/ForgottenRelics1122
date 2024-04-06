@@ -16,12 +16,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import thaumcraft.common.items.casters.CasterManager;
+import thaumcraft.api.items.IRechargable;
+import thaumcraft.api.items.RechargeHelper;
 import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import java.util.List;
 
-public class ItemDormantArcanum extends ItemBaubleBase implements IBauble {
+public class ItemDormantArcanum extends ItemBaubleBase implements IBauble, IRechargable {
 
 	public void registerRenderers() {}
 
@@ -74,7 +75,7 @@ public class ItemDormantArcanum extends ItemBaubleBase implements IBauble {
 
 			if (ItemNBTHelper.getInt(itemstack, "ILifetime", 0) > 0 ) {
 
-				if (CasterManager.consumeVisFromInventory((EntityPlayer) entity, 3)) {
+				if (RechargeHelper.consumeCharge(itemstack, entity, 3)) {
 					ItemNBTHelper.setInt(itemstack, "ILifetime", ItemNBTHelper.getInt(itemstack, "ILifetime", 0) - 1);
 				}
 
@@ -88,4 +89,13 @@ public class ItemDormantArcanum extends ItemBaubleBase implements IBauble {
 	}
 
 
+	@Override
+	public int getMaxCharge(ItemStack itemStack, EntityLivingBase entityLivingBase) {
+		return 300;
+	}
+
+	@Override
+	public EnumChargeDisplay showInHud(ItemStack itemStack, EntityLivingBase entityLivingBase) {
+		return EnumChargeDisplay.NORMAL;
+	}
 }
