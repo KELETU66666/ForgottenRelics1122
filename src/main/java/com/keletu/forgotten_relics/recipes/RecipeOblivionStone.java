@@ -1,10 +1,12 @@
-package com.keletu.forgotten_relics.utils;
+package com.keletu.forgotten_relics.recipes;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.keletu.forgotten_relics.Main;
 import com.keletu.forgotten_relics.config.RelicsConfigHandler;
 import com.keletu.forgotten_relics.proxy.CommonProxy;
+import com.keletu.forgotten_relics.utils.SuperpositionHandler;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,6 +17,10 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class RecipeOblivionStone extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 
+	public RecipeOblivionStone(){
+		super();
+		setRegistryName("forge:oblivion_stone");
+	}
 	public ItemStack getCraftingResult(InventoryCrafting par1InventoryCrafting) {
 		ItemStack repairedStack = ItemStack.EMPTY;
 		List<ItemStack> stackList = new ArrayList<ItemStack>();
@@ -79,8 +85,7 @@ public class RecipeOblivionStone extends IForgeRegistryEntry.Impl<IRecipe> imple
 
 			return returnedStack;
 		} else if (voidStone != ItemStack.EMPTY & stackList.size() == 0) {
-			ItemStack returnedStack = new ItemStack(CommonProxy.oblivionStone, 1, voidStone.getItemDamage());
-			return returnedStack;
+			return new ItemStack(CommonProxy.oblivionStone, 1, voidStone.getItemDamage());
 		} else
 			return ItemStack.EMPTY;
 
@@ -97,7 +102,7 @@ public class RecipeOblivionStone extends IForgeRegistryEntry.Impl<IRecipe> imple
 	public boolean matches(InventoryCrafting par1InventoryCrafting, World arg1) {
 
 		ItemStack repairedStack = ItemStack.EMPTY;
-		List<ItemStack> stackList = new ArrayList<ItemStack>();
+		List<ItemStack> stackList = new ArrayList<>();
 		ItemStack voidStone = ItemStack.EMPTY;
 
 		for (int i = 0; i < par1InventoryCrafting.getSizeInventory(); i++) {
@@ -130,7 +135,7 @@ public class RecipeOblivionStone extends IForgeRegistryEntry.Impl<IRecipe> imple
 			int[] arr = nbt.getIntArray("SupersolidID");
 			int[] meta = nbt.getIntArray("SupersolidMetaID");
 			int counter = 0;
-			
+
 			if (arr.length >= RelicsConfigHandler.oblivionStoneHardCap)
 				return false;
 

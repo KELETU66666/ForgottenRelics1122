@@ -33,6 +33,10 @@ public class CommonProxy {
     public static ItemWeatherStone weatherStone = new ItemWeatherStone();
     public static ItemSuperpositionRing superpositionRing = new ItemSuperpositionRing();
     public static ItemOblivionStone oblivionStone = new ItemOblivionStone();
+    public static ItemOblivionAmulet oblivionAmulet = new ItemOblivionAmulet();
+    public static ItemDimensionalMirror dimensionalMirror = new ItemDimensionalMirror();
+    public static ItemArcanum arcanum = new ItemArcanum();
+    public static ItemDormantArcanum dormantArcanum = new ItemDormantArcanum();
 
     public void preInit(FMLPreInitializationEvent event) {
         CapabilityManager.INSTANCE.register(PlayerVariables.class, new IPlayerStorage(), () -> null);
@@ -61,6 +65,10 @@ public class CommonProxy {
         event.getRegistry().register(weatherStone);
         event.getRegistry().register(superpositionRing);
         event.getRegistry().register(oblivionStone);
+        event.getRegistry().register(oblivionAmulet);
+        event.getRegistry().register(dimensionalMirror);
+        event.getRegistry().register(arcanum);
+        event.getRegistry().register(dormantArcanum);
     }
 
     @SideOnly(Side.CLIENT)

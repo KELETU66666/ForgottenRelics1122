@@ -5,8 +5,10 @@ import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
 import com.google.common.base.Predicates;
 import com.keletu.forgotten_relics.Main;
+import com.keletu.forgotten_relics.packets.BurstMessage;
 import com.keletu.forgotten_relics.packets.ICanSwingMySwordMessage;
 import com.keletu.forgotten_relics.packets.NotificationMessage;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
@@ -15,14 +17,18 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.casters.ICaster;
 import thaumcraft.common.entities.monster.boss.EntityThaumcraftBoss;
@@ -34,6 +40,72 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SuperpositionHandler {
+
+	/**
+	 * Attempts to teleport entity at given coordinates, or nearest valid location on Y axis.
+	 * @return True if successfull, false otherwise.
+	 */
+
+	public static boolean validTeleport(Entity entity, double x_init, double y_init, double z_init, World world) {
+
+		int x = (int) x_init;
+		int y = (int) y_init;
+		int z = (int) z_init;
+
+		Block block = world.getBlockState(new BlockPos(x, y-1, z)).getBlock();
+
+		if (block != Blocks.AIR & block.isCollidable()) {
+
+			for (int counter = 0; counter <= 32; counter++) {
+
+				if (!world.isAirBlock(new BlockPos(x, y+counter-1, z)) & world.getBlockState(new BlockPos(x, y+counter-1, z)).getBlock().isCollidable() & world.isAirBlock(new BlockPos(x, y+counter, z)) & world.isAirBlock(new BlockPos(x, y+counter+1, z))) {
+
+					SuperpositionHandler.imposeBurst(entity.world, entity.dimension, entity.posX, entity.posY+1, entity.posZ, 1.25f);
+
+					entity.world.playSound(entity.posX, entity.posY, entity.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
+					entity.setPositionAndUpdate(x+0.5, y+counter, z+0.5);
+					entity.world.playSound(x, y+counter, z, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
+
+					return true;
+				}
+
+			}
+
+		} else {
+
+			for (int counter = 0; counter <= 32; counter++) {
+
+				if (!world.isAirBlock(new BlockPos(x, y-counter-1, z)) & world.getBlockState(new BlockPos(x, y-counter-1, z)).getBlock().isCollidable() & world.isAirBlock(new BlockPos(x, y-counter, z)) & world.isAirBlock(new BlockPos(x, y-counter+1, z))) {
+
+					SuperpositionHandler.imposeBurst(entity.world, entity.dimension, entity.posX, entity.posY+1, entity.posZ, 1.25f);
+
+					entity.world.playSound(entity.posX, entity.posY, entity.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
+					entity.setPositionAndUpdate(x+0.5, y-counter, z+0.5);
+					entity.world.playSound(x, y-counter, z, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
+
+					return true;
+				}
+
+			}
+
+		}
+
+		return false;
+	}
+
+
+	/**
+	 * Attempts to find valid location within given radius and teleport entity there.
+	 * @return True if teleportation were successfull, false otherwise.
+	 */
+	public static boolean validTeleportRandomly(Entity entity, World world, int radius) {
+		int d = radius*2;
+
+		double x = entity.posX + ((Math.random()-0.5D)*d);
+		double y = entity.posY + ((Math.random()-0.5D)*d);
+		double z = entity.posZ + ((Math.random()-0.5D)*d);
+		return SuperpositionHandler.validTeleport(entity, x, y, z, world);
+	}
 
 	/**
 	 * Sets the player casting cooldown to given number and, optionally, swings the item player is holding.
@@ -94,6 +166,11 @@ public class SuperpositionHandler {
 				}
 			}
 
+	}
+
+	public static void imposeBurst(World world, int dimension, double x, double y, double z, float size) {
+		if (!world.isRemote)
+			Main.packetInstance.sendToAllAround(new BurstMessage(x, y, z, size), new NetworkRegistry.TargetPoint(dimension, x, y, z, 128.0D));
 	}
 
 	/**

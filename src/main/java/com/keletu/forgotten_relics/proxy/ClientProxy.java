@@ -39,5 +39,9 @@ public class ClientProxy extends CommonProxy {
         weatherStone.registerModels();
         superpositionRing.registerModels();
         oblivionStone.registerModels();
+        oblivionAmulet.registerModels();
+        dimensionalMirror.registerModels();
+        arcanum.registerModels();
+        dormantArcanum.registerModels();
     }
 }

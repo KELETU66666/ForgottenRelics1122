@@ -36,7 +36,8 @@ public class ItemOblivionStone extends Item implements IWarpingGear {
 	public ItemOblivionStone() {
 		this.setMaxDamage(0);
 		this.setMaxStackSize(1);
-		this.setTranslationKey("ItemOblivionStone");
+		this.setRegistryName("oblivion_stone");
+		this.setTranslationKey("oblivion_stone");
 		this.setCreativeTab(Main.tabForgottenRelics);
 	}
 
@@ -101,7 +102,8 @@ public class ItemOblivionStone extends Item implements IWarpingGear {
 
 	@SideOnly(Side.CLIENT)
 	public void registerModels() {
-		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(this.getRegistryName(), "inventory"));
+		for(int i = 0; i < 105; i++)
+			ModelLoader.setCustomModelResourceLocation(this, i, new ModelResourceLocation(this.getRegistryName(), "inventory"));
 	}
 
 	public static void consumeStuff(EntityPlayer player, int[] ID, int[] meta, int mode) {

@@ -3,13 +3,13 @@ package com.keletu.forgotten_relics;
 import com.keletu.forgotten_relics.config.RelicsConfigHandler;
 import com.keletu.forgotten_relics.entities.EntityShinyEnergy;
 import com.keletu.forgotten_relics.network.PlayerVariables;
+import com.keletu.forgotten_relics.packets.BurstMessage;
 import com.keletu.forgotten_relics.packets.ICanSwingMySwordMessage;
 import com.keletu.forgotten_relics.packets.NotificationMessage;
 import com.keletu.forgotten_relics.proxy.CommonProxy;
-import com.keletu.forgotten_relics.utils.RecipeOblivionStone;
+import com.keletu.forgotten_relics.recipes.RecipeOblivionStone;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -66,6 +66,7 @@ public class Main {
         configHandler.configDisposition(event);
 
         packetInstance = NetworkRegistry.INSTANCE.newSimpleChannel("RelicsChannel");
+        packetInstance.registerMessage(BurstMessage.Handler.class, BurstMessage.class, 2, Side.CLIENT);
         packetInstance.registerMessage(ICanSwingMySwordMessage.Handler.class, ICanSwingMySwordMessage.class, 8, Side.CLIENT);
         packetInstance.registerMessage(NotificationMessage.Handler.class, NotificationMessage.class, 15, Side.CLIENT);
 
@@ -81,7 +82,7 @@ public class Main {
 
         proxy.init(event);
 
-        RecipeSorter.register("forge:oblivionstone", RecipeOblivionStone.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessorenbt");
+        //RecipeSorter.register("forge:oblivionstone", RecipeOblivionStone.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessorenbt");
 
         darkRingDamageNegations.add(DamageSource.LAVA.damageType);
         darkRingDamageNegations.add(DamageSource.IN_FIRE.damageType);

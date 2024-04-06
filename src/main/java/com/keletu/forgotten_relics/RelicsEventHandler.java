@@ -1,8 +1,10 @@
 package com.keletu.forgotten_relics;
 
+import baubles.api.BaublesApi;
 import com.keletu.forgotten_relics.config.RelicsConfigHandler;
 import com.keletu.forgotten_relics.items.ItemParadox;
 import com.keletu.forgotten_relics.proxy.CommonProxy;
+import com.keletu.forgotten_relics.recipes.FRRecipes;
 import com.keletu.forgotten_relics.utils.DamageRegistryHandler;
 import com.keletu.forgotten_relics.utils.SuperpositionHandler;
 import net.minecraft.client.resources.I18n;
@@ -10,8 +12,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -20,11 +24,17 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import thaumcraft.common.items.casters.CasterManager;
+import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import java.util.List;
 
 public class RelicsEventHandler {
 
+    @SubscribeEvent
+    public void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+        FRRecipes.initRecipes(event.getRegistry());
+    }
     @SubscribeEvent
     public void livingTick(LivingEvent.LivingUpdateEvent event) {
 
@@ -119,13 +129,13 @@ public class RelicsEventHandler {
                 }
 
             }
-/*
+
             /*
              * Handler for randomly teleport player who has Nebulous Core equipped,
              * instead of taking damage from attack.
+*/
 
-
-            if (!event.isCanceled() & SuperpositionHandler.hasBauble(player, Main.itemArcanum) & Math.random() < RelicsConfigHandler.nebulousCoreDodgeChance & !SuperpositionHandler.isDamageTypeAbsolute(event.getSource())) {
+            if (!event.isCanceled() & SuperpositionHandler.hasBauble(player, CommonProxy.arcanum) & Math.random() < RelicsConfigHandler.nebulousCoreDodgeChance & !SuperpositionHandler.isDamageTypeAbsolute(event.getSource())) {
 
                 for (int counter = 0; counter <= 32; counter ++) {
                     if (SuperpositionHandler.validTeleportRandomly(event.getEntity(), event.getEntity().world, 16)) {
@@ -135,7 +145,7 @@ public class RelicsEventHandler {
                     }
                 }
             }
-*/
+
             /*
              * Handler for converting fire damage into healing for Ring of The Seven Suns.
              */
@@ -300,21 +310,21 @@ public class RelicsEventHandler {
                     }
                 }
 
-            ///*
-            // * Handler for damage absorption by Oblivion Amulet.
-            // */
-//
-            //if (!event.isCanceled() & SuperpositionHandler.hasBauble(player, Main.itemOblivionAmulet) & !SuperpositionHandler.isDamageTypeAbsolute(event.getSource())) {
-            //    if (WandManager.consumeVisFromInventory(player, new AspectList().add(Aspect.FIRE, (int)(event.getAmount()*8*RelicsConfigHandler.oblivionAmuletVisMult)).add(Aspect.ENTROPY, (int)(event.getAmount()*8*RelicsConfigHandler.oblivionAmuletVisMult)))) {
-//
-            //        ItemStack oblivionAmulet = PlayerHandler.getPlayerBaubles(player).getStackInSlot(0);
-//
-            //        ItemNBTHelper.setFloat(oblivionAmulet, "IDamageStored", ItemNBTHelper.getFloat(oblivionAmulet, "IDamageStored", 0) + event.getAmount());
-//
-            //        event.setCanceled(true);
-//
-            //    }
-            //}
+            /*
+             * Handler for damage absorption by Oblivion Amulet.
+             */
+
+            if (!event.isCanceled() & SuperpositionHandler.hasBauble(player, CommonProxy.oblivionAmulet) & !SuperpositionHandler.isDamageTypeAbsolute(event.getSource())) {
+                if (CasterManager.consumeVisFromInventory(player, event.getAmount()*8*RelicsConfigHandler.oblivionAmuletVisMult)) {
+
+                    ItemStack oblivionAmulet = BaublesApi.getBaublesHandler(player).getStackInSlot(0);
+
+                    ItemNBTHelper.setFloat(oblivionAmulet, "IDamageStored", ItemNBTHelper.getFloat(oblivionAmulet, "IDamageStored", 0) + event.getAmount());
+
+                    event.setCanceled(true);
+
+                }
+            }
 
 
         }
