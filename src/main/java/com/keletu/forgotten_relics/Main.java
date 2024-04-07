@@ -58,7 +58,7 @@ public class Main {
 
     public static final String MOD_ID = "forgotten_relics";
     public static final String MOD_NAME = "Forgotten Relics Kedition";
-    public static final String VERSION = "0.6.0";
+    public static final String VERSION = "0.6.1";
 
     @CapabilityInject(PlayerVariables.class)
     public static Capability<PlayerVariables> PLAYER = null;
