@@ -331,6 +331,12 @@ public class SuperpositionHandler {
 			baubleList.add(baubles.getStackInSlot(2).getItem());
 		if (baubles.getStackInSlot(3) != ItemStack.EMPTY)
 			baubleList.add(baubles.getStackInSlot(3).getItem());
+		if (baubles.getStackInSlot(4) != ItemStack.EMPTY)
+			baubleList.add(baubles.getStackInSlot(4).getItem());
+		if (baubles.getStackInSlot(5) != ItemStack.EMPTY)
+			baubleList.add(baubles.getStackInSlot(5).getItem());
+		if (baubles.getStackInSlot(6) != ItemStack.EMPTY)
+			baubleList.add(baubles.getStackInSlot(6).getItem());
 
 		return baubleList.contains(theBauble);
 	}

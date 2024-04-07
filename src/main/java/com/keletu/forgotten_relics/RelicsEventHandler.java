@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -60,6 +61,28 @@ public class RelicsEventHandler {
             }
 
         }
+    }
+
+    @SubscribeEvent(priority= EventPriority.LOWEST)
+    public void miningStuff(PlayerEvent.BreakSpeed event) {
+
+        /*
+         * Handler for calculating mining speed boost from wearing Mining Charms.
+         */
+
+        float miningBoost = 1.0F;
+
+        if (SuperpositionHandler.hasBauble(event.getEntityPlayer(), CommonProxy.AdvancedMiningCharm)) {
+            miningBoost = miningBoost + RelicsConfigHandler.advancedMiningCharmBoost;
+        }
+
+        if (SuperpositionHandler.hasBauble(event.getEntityPlayer(), CommonProxy.MiningCharm)) {
+            miningBoost += RelicsConfigHandler.miningCharmBoost;
+        }
+
+        event.setNewSpeed(event.getNewSpeed() * miningBoost);
+
+
     }
 
     @SideOnly(Side.CLIENT)
@@ -253,23 +276,23 @@ public class RelicsEventHandler {
              * Handler for redirecting damage received by player to owner of Ancient Aegis
              * nearby, if one is present.
              */
-/*
-            if(!event.getEntity().world.isRemote & !SuperpositionHandler.hasBauble(player, Main.itemAncientAegis) & !event.isCanceled()) {
-                EntityPlayer aegisOwner = SuperpositionHandler.findPlayerWithBauble(event.getEntity().world, 32, Main.itemAncientAegis, player);
+
+            if(!event.getEntity().world.isRemote & !SuperpositionHandler.hasBauble(player, CommonProxy.AncientAegis) & !event.isCanceled()) {
+                EntityPlayer aegisOwner = SuperpositionHandler.findPlayerWithBauble(event.getEntity().world, 32, CommonProxy.AncientAegis, player);
 
                 if (aegisOwner != null) {
                     aegisOwner.attackEntityFrom(event.getSource(), event.getAmount() * 0.4F);
                     event.setAmount(event.getAmount() * 0.6F);
                 }
             }
-*/
-            ///*
-            // * Handler for Ancient Aegis damage reduction.
-            // */
-//
-            //if (SuperpositionHandler.hasBauble(player, Main.itemAncientAegis) & !event.isCanceled() & !SuperpositionHandler.isDamageTypeAbsolute(event.getSource())) {
-            //    event.setAmount(event.getAmount() - RelicsConfigHandler.ancientAegisDamageReduction);
-            //}
+
+            /*
+             * Handler for Ancient Aegis damage reduction.
+             */
+
+            if (SuperpositionHandler.hasBauble(player, CommonProxy.AncientAegis) & !event.isCanceled() & !SuperpositionHandler.isDamageTypeAbsolute(event.getSource())) {
+                event.setAmount(event.getAmount() - RelicsConfigHandler.ancientAegisDamageReduction);
+            }
 
             /*
              * Handler for splitting damage dealt to wearer of Superposition Ring
