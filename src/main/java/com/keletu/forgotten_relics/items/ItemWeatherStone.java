@@ -31,7 +31,7 @@ import java.util.List;
 
 public class ItemWeatherStone extends Item implements IRechargable {
 
-	public int VisCost = (int) (100 * weatherStoneVisMult);
+	public int VisCost = (int) (25 * weatherStoneVisMult);
 
 	public ItemWeatherStone() {
 
@@ -124,7 +124,7 @@ public class ItemWeatherStone extends Item implements IRechargable {
 
 	@Override
 	public int getMaxCharge(ItemStack itemStack, EntityLivingBase entityLivingBase) {
-		return (int) (100 * weatherStoneVisMult);
+		return VisCost * 4;
 	}
 
 	@Override

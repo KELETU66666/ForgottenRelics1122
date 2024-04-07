@@ -291,7 +291,7 @@ public class RelicsEventHandler {
              */
 
             if (SuperpositionHandler.hasBauble(player, CommonProxy.AncientAegis) & !event.isCanceled() & !SuperpositionHandler.isDamageTypeAbsolute(event.getSource())) {
-                event.setAmount(event.getAmount() - RelicsConfigHandler.ancientAegisDamageReduction);
+                event.setAmount(event.getAmount() * (1 - RelicsConfigHandler.ancientAegisDamageReduction));
             }
 
             /*
