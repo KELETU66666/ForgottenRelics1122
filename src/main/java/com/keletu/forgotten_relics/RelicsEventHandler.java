@@ -243,7 +243,7 @@ public class RelicsEventHandler {
 */
 
 
-        if (event.getEntity() instanceof EntityPlayer & !event.isCanceled()) {
+        if (event.getAmount() > 0 && event.getEntity() instanceof EntityPlayer & !event.isCanceled()) {
             EntityPlayer player = (EntityPlayer) event.getEntity();
 
             /*
