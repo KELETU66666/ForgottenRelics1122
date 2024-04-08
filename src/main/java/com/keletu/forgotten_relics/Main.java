@@ -7,7 +7,6 @@ import com.keletu.forgotten_relics.packets.BurstMessage;
 import com.keletu.forgotten_relics.packets.ICanSwingMySwordMessage;
 import com.keletu.forgotten_relics.packets.NotificationMessage;
 import com.keletu.forgotten_relics.proxy.CommonProxy;
-import com.keletu.forgotten_relics.recipes.RecipeOblivionStone;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -31,7 +30,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.RecipeSorter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thaumcraft.Thaumcraft;
@@ -39,10 +37,8 @@ import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.items.ItemsTC;
 import thaumcraft.api.research.ResearchCategories;
-import thaumcraft.api.research.ResearchEvent;
 import thaumcraft.api.research.ScanItem;
 import thaumcraft.api.research.ScanningManager;
-import thaumcraft.common.lib.research.ResearchManager;
 import vazkii.botania.common.item.ModItems;
 
 import java.util.ArrayList;
@@ -58,7 +54,7 @@ public class Main {
 
     public static final String MOD_ID = "forgotten_relics";
     public static final String MOD_NAME = "Forgotten Relics Kedition";
-    public static final String VERSION = "0.6.1";
+    public static final String VERSION = "0.6.2";
 
     @CapabilityInject(PlayerVariables.class)
     public static Capability<PlayerVariables> PLAYER = null;
