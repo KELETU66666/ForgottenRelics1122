@@ -81,7 +81,7 @@ public class ItemSuperpositionRing extends ItemBaubleBase implements IBauble {
 					Vector3 pos1 = Vector3.fromEntityCenter(entity);
 					Vector3 pos2 = Vector3.fromEntityCenter(randomPlayer);
 
-					if (randomPlayer.dimension != entity.dimension && entity.getServer().getPlayerList() != null && randomPlayer.getServer().getPlayerList() != null) {
+					if (randomPlayer.dimension != entity.dimension && entity.getServer() != null && randomPlayer.getServer() != null) {
 						int dim1 = entity.dimension;
 						int dim2 = randomPlayer.dimension;
 						randomPlayer.getServer().getPlayerList().transferPlayerToDimension((EntityPlayerMP) randomPlayer, dim1, ((WorldServer) randomPlayer.world).getDefaultTeleporter());

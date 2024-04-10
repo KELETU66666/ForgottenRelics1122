@@ -9,7 +9,6 @@ import com.keletu.forgotten_relics.packets.BurstMessage;
 import com.keletu.forgotten_relics.packets.ICanSwingMySwordMessage;
 import com.keletu.forgotten_relics.packets.NotificationMessage;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -260,9 +259,9 @@ public class SuperpositionHandler {
 
 		List<EntityPlayer> returnList = new LinkedList();
 
-		if (!world.isRemote) {
+		if (!world.isRemote && world.getMinecraftServer() != null) {
 
-			List<EntityPlayer> playersList = new ArrayList(Minecraft.getMinecraft().getIntegratedServer().getPlayerList().getPlayers());
+			List<EntityPlayer> playersList = new ArrayList(world.getMinecraftServer().getPlayerList().getPlayers());
 
 			for (int counter = playersList.size() - 1; counter >= 0; counter --) {
 
