@@ -141,6 +141,11 @@ public class FRRecipes {
                         .add(Aspect.VOID, 75).add(Aspect.DARKNESS, 75).add(Aspect.ENTROPY, 60).add(Aspect.EXCHANGE, 30).add(Aspect.MAGIC, 30),
                 charmVoidseer,
                 ENDER_EYE, voidSeed, "ingotVoid", voidSeed, "nitor", voidSeed, "ingotVoid", voidSeed ));
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(Main.MOD_ID, "pech_wand_fr"), new InfusionRecipe("PECH_WAND_FR",
+                new ItemStack(pechWand), 5, new AspectList()
+                .add(Aspect.ENTROPY, 30).add(Aspect.EXCHANGE, 60).add(Aspect.MAGIC, 50).add(Aspect.SENSES, 30).add(Aspect.DEATH, 55),
+                "stickWood",
+                "gemEmerald", BLAZE_POWDER, GHAST_TEAR, SUGAR, "gemQuartz", "gemQuartz", "gemQuartz", "dustRedstone", NETHER_WART, FERMENTED_SPIDER_EYE));
     }
 
     private static void initNormalRecipes(IForgeRegistry<IRecipe> forgeRegistry) {

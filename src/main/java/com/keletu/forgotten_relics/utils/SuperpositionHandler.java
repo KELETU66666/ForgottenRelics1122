@@ -2,7 +2,6 @@ package com.keletu.forgotten_relics.utils;
 
 import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
-import baubles.api.cap.IBaublesItemHandler;
 import com.google.common.base.Predicates;
 import com.keletu.forgotten_relics.Main;
 import com.keletu.forgotten_relics.packets.BurstMessage;
@@ -319,25 +318,7 @@ public class SuperpositionHandler {
 	 */
 
 	public static boolean hasBauble(EntityPlayer player, Item theBauble) {
-
-		IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
-		List<Item> baubleList = new ArrayList<>();
-		if (baubles.getStackInSlot(0) != ItemStack.EMPTY)
-			baubleList.add(baubles.getStackInSlot(0).getItem());
-		if (baubles.getStackInSlot(1) != ItemStack.EMPTY)
-			baubleList.add(baubles.getStackInSlot(1).getItem());
-		if (baubles.getStackInSlot(2) != ItemStack.EMPTY)
-			baubleList.add(baubles.getStackInSlot(2).getItem());
-		if (baubles.getStackInSlot(3) != ItemStack.EMPTY)
-			baubleList.add(baubles.getStackInSlot(3).getItem());
-		if (baubles.getStackInSlot(4) != ItemStack.EMPTY)
-			baubleList.add(baubles.getStackInSlot(4).getItem());
-		if (baubles.getStackInSlot(5) != ItemStack.EMPTY)
-			baubleList.add(baubles.getStackInSlot(5).getItem());
-		if (baubles.getStackInSlot(6) != ItemStack.EMPTY)
-			baubleList.add(baubles.getStackInSlot(6).getItem());
-
-		return baubleList.contains(theBauble);
+		return BaublesApi.isBaubleEquipped(player, theBauble) != -1;
 	}
 
 	/**

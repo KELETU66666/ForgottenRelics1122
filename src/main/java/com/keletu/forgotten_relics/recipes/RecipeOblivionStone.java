@@ -3,7 +3,6 @@ package com.keletu.forgotten_relics.recipes;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.keletu.forgotten_relics.Main;
 import com.keletu.forgotten_relics.config.RelicsConfigHandler;
 import com.keletu.forgotten_relics.proxy.CommonProxy;
 import com.keletu.forgotten_relics.utils.SuperpositionHandler;
@@ -17,144 +16,144 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class RecipeOblivionStone extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 
-	public RecipeOblivionStone(){
-		super();
-		setRegistryName("forge:oblivion_stone");
-	}
-	public ItemStack getCraftingResult(InventoryCrafting par1InventoryCrafting) {
-		ItemStack repairedStack = ItemStack.EMPTY;
-		List<ItemStack> stackList = new ArrayList<ItemStack>();
-		ItemStack voidStone = ItemStack.EMPTY;
+    public RecipeOblivionStone() {
+        setRegistryName("forge:oblivion_stone");
+    }
 
-		for (int i = 0; i < par1InventoryCrafting.getSizeInventory(); i++) {
-			ItemStack checkedItemStack = par1InventoryCrafting.getStackInSlot(i);
+    public ItemStack getCraftingResult(InventoryCrafting par1InventoryCrafting) {
+        ItemStack repairedStack = ItemStack.EMPTY;
+        List<ItemStack> stackList = new ArrayList<ItemStack>();
+        ItemStack voidStone = ItemStack.EMPTY;
 
-			if (checkedItemStack != ItemStack.EMPTY) {
-				if (checkedItemStack.getItem() == CommonProxy.oblivionStone) {
-					if (voidStone == ItemStack.EMPTY)
-						voidStone = checkedItemStack;
-					else
-						return ItemStack.EMPTY;
-				} else {
-					stackList.add(checkedItemStack);
-				}
+        for (int i = 0; i < par1InventoryCrafting.getSizeInventory(); i++) {
+            ItemStack checkedItemStack = par1InventoryCrafting.getStackInSlot(i);
 
-			}
+            if (checkedItemStack != ItemStack.EMPTY) {
+                if (checkedItemStack.getItem() == CommonProxy.oblivionStone) {
+                    if (voidStone == ItemStack.EMPTY)
+                        voidStone = checkedItemStack;
+                    else
+                        return ItemStack.EMPTY;
+                } else {
+                    stackList.add(checkedItemStack);
+                }
 
-		}
+            }
 
-		if (voidStone != ItemStack.EMPTY & stackList.size() == 1) {
-			ItemStack savedStack = stackList.get(0).copy();
+        }
 
-			NBTTagCompound nbt;
+        if (voidStone != ItemStack.EMPTY & stackList.size() == 1) {
+            ItemStack savedStack = stackList.get(0).copy();
 
-			if (voidStone.hasTagCompound())
-				nbt = voidStone.getTagCompound().copy();
-			else
-				nbt = new NBTTagCompound();
+            NBTTagCompound nbt;
 
-			int[] arr = nbt.getIntArray("SupersolidID");
-			int[] meta = nbt.getIntArray("SupersolidMetaID");
-			int counter = 0;
+            if (voidStone.hasTagCompound())
+                nbt = voidStone.getTagCompound().copy();
+            else
+                nbt = new NBTTagCompound();
 
-			if (arr.length >= RelicsConfigHandler.oblivionStoneHardCap)
-				return ItemStack.EMPTY;
+            int[] arr = nbt.getIntArray("SupersolidID");
+            int[] meta = nbt.getIntArray("SupersolidMetaID");
+            int counter = 0;
 
-			for (int s : arr) {
-				int metaD = meta[counter];
-				counter++;
-				if (s == Item.getIdFromItem(savedStack.getItem()) & metaD != -1
-						& metaD == savedStack.getItemDamage())
-					return ItemStack.EMPTY;
-				else if (s == Item.getIdFromItem(savedStack.getItem()) & metaD == -1)
-					return ItemStack.EMPTY;
-			}
+            if (arr.length >= RelicsConfigHandler.oblivionStoneHardCap)
+                return ItemStack.EMPTY;
 
-			arr = SuperpositionHandler.addInt(arr, Item.getIdFromItem(savedStack.getItem()));
+            for (int s : arr) {
+                int metaD = meta[counter];
+                counter++;
+                if (s == Item.getIdFromItem(savedStack.getItem()) & metaD != -1
+                        & metaD == savedStack.getItemDamage())
+                    return ItemStack.EMPTY;
+                else if (s == Item.getIdFromItem(savedStack.getItem()) & metaD == -1)
+                    return ItemStack.EMPTY;
+            }
 
-			if (!savedStack.isItemStackDamageable())
-				meta = SuperpositionHandler.addInt(meta, savedStack.getItemDamage());
-			else
-				meta = SuperpositionHandler.addInt(meta, -1);
+            arr = SuperpositionHandler.addInt(arr, Item.getIdFromItem(savedStack.getItem()));
 
-			nbt.setIntArray("SupersolidID", arr);
-			nbt.setIntArray("SupersolidMetaID", meta);
+            if (!savedStack.isItemStackDamageable())
+                meta = SuperpositionHandler.addInt(meta, savedStack.getItemDamage());
+            else
+                meta = SuperpositionHandler.addInt(meta, -1);
 
-			ItemStack returnedStack = voidStone.copy();
-			returnedStack.setTagCompound(nbt);
+            nbt.setIntArray("SupersolidID", arr);
+            nbt.setIntArray("SupersolidMetaID", meta);
 
-			return returnedStack;
-		} else if (voidStone != ItemStack.EMPTY & stackList.size() == 0) {
-			return new ItemStack(CommonProxy.oblivionStone, 1, voidStone.getItemDamage());
-		} else
-			return ItemStack.EMPTY;
+            ItemStack returnedStack = voidStone.copy();
+            returnedStack.setTagCompound(nbt);
 
-	}
+            return returnedStack;
+        } else if (voidStone != ItemStack.EMPTY & stackList.size() == 0) {
+            return new ItemStack(CommonProxy.oblivionStone, 1, voidStone.getItemDamage());
+        } else
+            return ItemStack.EMPTY;
 
-	public ItemStack getRecipeOutput() {
-		return ItemStack.EMPTY;
-	}
+    }
 
-	public int getRecipeSize() {
-		return 10;
-	}
+    public ItemStack getRecipeOutput() {
+        return ItemStack.EMPTY;
+    }
 
-	public boolean matches(InventoryCrafting par1InventoryCrafting, World arg1) {
+    public int getRecipeSize() {
+        return 10;
+    }
 
-		ItemStack repairedStack = ItemStack.EMPTY;
-		List<ItemStack> stackList = new ArrayList<>();
-		ItemStack voidStone = ItemStack.EMPTY;
+    public boolean matches(InventoryCrafting par1InventoryCrafting, World arg1) {
 
-		for (int i = 0; i < par1InventoryCrafting.getSizeInventory(); i++) {
-			ItemStack checkedItemStack = par1InventoryCrafting.getStackInSlot(i);
+        ItemStack repairedStack = ItemStack.EMPTY;
+        List<ItemStack> stackList = new ArrayList<>();
+        ItemStack voidStone = ItemStack.EMPTY;
 
-			if (checkedItemStack != ItemStack.EMPTY) {
-				if (checkedItemStack.getItem() == CommonProxy.oblivionStone) {
-					if (voidStone == ItemStack.EMPTY)
-						voidStone = checkedItemStack;
-					else
-						return false;
-				} else {
-					stackList.add(checkedItemStack);
-				}
+        for (int i = 0; i < par1InventoryCrafting.getSizeInventory(); i++) {
+            ItemStack checkedItemStack = par1InventoryCrafting.getStackInSlot(i);
 
-			}
+            if (checkedItemStack != ItemStack.EMPTY) {
+                if (checkedItemStack.getItem() == CommonProxy.oblivionStone) {
+                    if (voidStone == ItemStack.EMPTY)
+                        voidStone = checkedItemStack;
+                    else
+                        return false;
+                } else {
+                    stackList.add(checkedItemStack);
+                }
 
-		}
+            }
 
-		if (voidStone != ItemStack.EMPTY & stackList.size() == 1) {
-			ItemStack savedStack = stackList.get(0).copy();
+        }
 
-			NBTTagCompound nbt;
+        if (voidStone != ItemStack.EMPTY & stackList.size() == 1) {
+            ItemStack savedStack = stackList.get(0).copy();
 
-			if (voidStone.hasTagCompound())
-				nbt = voidStone.getTagCompound().copy();
-			else
-				nbt = new NBTTagCompound();
+            NBTTagCompound nbt;
 
-			int[] arr = nbt.getIntArray("SupersolidID");
-			int[] meta = nbt.getIntArray("SupersolidMetaID");
-			int counter = 0;
+            if (voidStone.hasTagCompound())
+                nbt = voidStone.getTagCompound().copy();
+            else
+                nbt = new NBTTagCompound();
 
-			if (arr.length >= RelicsConfigHandler.oblivionStoneHardCap)
-				return false;
+            int[] arr = nbt.getIntArray("SupersolidID");
+            int[] meta = nbt.getIntArray("SupersolidMetaID");
+            int counter = 0;
 
-			for (int s : arr) {
-				int metaD = meta[counter];
-				counter++;
-				if (s == Item.getIdFromItem(savedStack.getItem()) & metaD != -1
-						& metaD == savedStack.getItemDamage())
-					return false;
-				else if (s == Item.getIdFromItem(savedStack.getItem()) & metaD == -1)
-					return false;
-			}
+            if (arr.length >= RelicsConfigHandler.oblivionStoneHardCap)
+                return false;
 
-			return true;
-		} else return voidStone != ItemStack.EMPTY & stackList.size() == 0;
+            for (int s : arr) {
+                int metaD = meta[counter];
+                counter++;
+                if (s == Item.getIdFromItem(savedStack.getItem()) & metaD != -1
+                        & metaD == savedStack.getItemDamage())
+                    return false;
+                else if (s == Item.getIdFromItem(savedStack.getItem()) & metaD == -1)
+                    return false;
+            }
 
-	}
+            return true;
+        } else return voidStone != ItemStack.EMPTY & stackList.size() == 0;
 
-	public boolean canFit(int width, int height){
-		return true;
-	}
+    }
+
+    public boolean canFit(int width, int height) {
+        return true;
+    }
 }

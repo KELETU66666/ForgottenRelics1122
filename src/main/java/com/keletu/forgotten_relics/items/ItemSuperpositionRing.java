@@ -73,8 +73,7 @@ public class ItemSuperpositionRing extends ItemBaubleBase implements IBauble {
 
 			if (Math.random() <= 0.025) {
 				List <EntityPlayer> players = SuperpositionHandler.getBaubleOwnersList(entity.world, CommonProxy.superpositionRing);
-				if (players.contains(entity))
-					players.remove(entity);
+				players.remove(entity);
 
 				if (players.size() > 0) {
 					EntityPlayer randomPlayer = players.get((int) (Math.random() * players.size()));

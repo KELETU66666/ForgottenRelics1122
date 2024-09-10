@@ -142,6 +142,35 @@
       ]
     },
     {
+      "key": "PECH_WAND_FR",
+      "name": "fr.name.PechWand",
+      "category": "FORGOTTEN_RELICS",
+      "icons": [
+        "thaumcraft:pech_wand"
+      ],
+      "parents": [
+        "WEATHER_STONE"
+      ],
+      "meta": ["HEX", "HIDDEN"],
+      "location": [
+        -2,
+        -1
+      ],
+      "stages": [
+        {
+          "text": "fr.text.PechWand.1",
+          "required_knowledge": [
+            "THEORY;BASICS;2","THEORY;AUROMANCY;2","THEORY;INFUSION;2"
+          ],
+          "required_item": ["minecraft:stick", "minecraft:emerald"]
+        },
+        {
+          "text": "fr.text.PechWand.2",
+          "recipes": ["forgotten_relics:pech_wand_fr"]
+        }
+      ]
+    },
+    {
       "key": "EXPERIENCE_TOME",
       "name": "fr.name.XPTome",
       "category": "FORGOTTEN_RELICS",

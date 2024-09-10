@@ -34,7 +34,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thaumcraft.Thaumcraft;
 import thaumcraft.api.ThaumcraftApi;
-import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.items.ItemsTC;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ScanItem;
@@ -54,7 +53,7 @@ public class Main {
 
     public static final String MOD_ID = "forgotten_relics";
     public static final String MOD_NAME = "Forgotten Relics Kedition";
-    public static final String VERSION = "0.6.2";
+    public static final String VERSION = "0.7.0";
 
     @CapabilityInject(PlayerVariables.class)
     public static Capability<PlayerVariables> PLAYER = null;
@@ -102,7 +101,7 @@ public class Main {
         ScanningManager.addScannableThing(new ScanItem("!BlazeRod", new ItemStack(Items.BLAZE_ROD)));
         ScanningManager.addScannableThing(new ScanItem("!SuperpositionRing", new ItemStack(CommonProxy.superpositionRing)));
         ScanningManager.addScannableThing(new ScanItem("!ThaumiumIngot", new ItemStack(ItemsTC.ingots, 1, 0)));
-        ResearchCategories.registerCategory("FORGOTTEN_RELICS", null, new AspectList(), new ResourceLocation(MOD_ID, "textures/items/omega_core.png"), new ResourceLocation(Thaumcraft.MODID, "textures/gui/gui_research_back_5.jpg"));
+        ResearchCategories.registerCategory("FORGOTTEN_RELICS", "UNLOCKELDRITCH", null, new ResourceLocation(MOD_ID, "textures/items/omega_core.png"), new ResourceLocation(Thaumcraft.MODID, "textures/gui/gui_research_back_5.jpg"));
         ThaumcraftApi.registerResearchLocation(new ResourceLocation(MOD_ID, "research/baubles"));
         //RecipeSorter.register("forge:oblivionstone", RecipeOblivionStone.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessorenbt");
 
